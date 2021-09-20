@@ -1,0 +1,10 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "PaD_jdk8.jar"
+    ],
+    "java.project.sourcePaths": [
+        "java_td0",
+        "java_td1_td2"
+    ]
+}

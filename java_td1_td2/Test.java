@@ -1,3 +1,5 @@
+import PaD.PlancheADessin;
+
 /**
  * Classe de Test pour tester les différentes classes du td1 et 2
  *
@@ -63,7 +65,7 @@ public class Test {
 
     // ----- 3 -----
 
-    Point A = new Point(14,-5);
+/*     Point A = new Point(14,-5);
     Point B = new Point(2, 7);
     Point C = new Point(5,4);
     Point D = new Point(1, 2);
@@ -85,7 +87,40 @@ public class Test {
     }
     else {
         System.out.println("Le point d'intersection n'appartient pas a AB ou GH.");
-    }
+    } */
+
+    // ----- 4 -----
+
+    Point A = new Point(14,-5);
+    Point B = new Point(2, 7);
+    Point C = new Point(5,4);
+    Point D = new Point(1, 2);
+    Point G = new Point(-2, -3);
+    Point H = new Point(9, 5);
+
+    Segment AB = new Segment(A, B);
+    Segment GH = new Segment(G, H);
+
+    Plan2D graphique = new Plan2D();
+
+    graphique.tracerPoint(A, PlancheADessin.BLEU);
+    graphique.tracerNomPoint(A, "A", PlancheADessin.BLEU);
+    graphique.tracerPoint(B, PlancheADessin.BLEU);
+    graphique.tracerNomPoint(B, "B", PlancheADessin.BLEU);
+    graphique.tracerPoint(C, PlancheADessin.BLEU);
+    graphique.tracerNomPoint(C, "C", PlancheADessin.BLEU);
+    graphique.tracerPoint(D, PlancheADessin.BLEU);
+    graphique.tracerNomPoint(D, "D", PlancheADessin.BLEU);
+    graphique.tracerPoint(G, PlancheADessin.BLEU);
+    graphique.tracerNomPoint(G, "G", PlancheADessin.BLEU);
+    graphique.tracerPoint(H, PlancheADessin.BLEU);
+    graphique.tracerNomPoint(H, "H", PlancheADessin.BLEU);
+
+    graphique.tracerSegment(AB);
+    graphique.tracerSegment(GH);
+
+    Point point_intersection = AB.intersection(GH);
+    graphique.tracerPoint(point_intersection, PlancheADessin.VERT);
 
     }
 }
