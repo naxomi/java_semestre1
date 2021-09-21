@@ -108,8 +108,7 @@ public class Test {
         graphique.tracerSegment(segmentGH);
     
         Point pointIntersection = segmentAB.intersection(segmentGH);
-        graphique.tracerPoint(pointIntersection, PlancheADessin.VERT);
-        graphique.tracerNomPoint(pointIntersection, "I", PlancheADessin.VERT);
+        graphique.tracerPoint(pointIntersection, PlancheADessin.GRIS_FONCÉ);
 
         System.out.println(TEXT_SEPARATOR);
     } 
