@@ -8,19 +8,21 @@
 public class Point {
     private double abs;
     private double ord;
+    private String name;
     /* 
      * Rôle : initialise le point (0,0)
      */
     public Point() {
-        this(0.0, 0.0);
+        this(0.0, 0.0, "O");
     }
-    
+
     /* 
      * Rôle : initialise le point (x,y)
      */
-    public Point(double x, double y) {
+    public Point(double x, double y, String name) {
         this.abs = x;
         this.ord = y;
+        this.name = name;
     }
 
     /**
@@ -35,6 +37,13 @@ public class Point {
      */
     public double getY() {
         return this.ord;
+    }
+
+    /**
+     *  Rôle : renvoie le nom du Point courant 
+     */
+    public String getName() {
+        return this.name;
     }
 
     /**

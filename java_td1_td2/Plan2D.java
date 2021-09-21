@@ -10,13 +10,13 @@ import java.awt.Color;
  */
 
 public class Plan2D {
-    private final double unite = 20;
-    private final double diametre_point = 5;
+    private static final double UNITE = 20;
+    private static final double DIAMETRE_POINT = 5;
     private PlancheADessin pad;
     private final double largeur;
     private final double hauteur;
-    private final double milieu_l;
-    private final double milieu_h;
+    private final double milieuL;
+    private final double milieuH;
 
     /**
      * Rôle crée un Plan2D avec les axes gradués des abscisses et des ordonnées
@@ -26,8 +26,8 @@ public class Plan2D {
         this.pad = new PlancheADessin(true);
         this.largeur = pad.getLargeur();
         this.hauteur = pad.getHauteur();
-        this.milieu_l=  largeur/2;
-        this.milieu_h = hauteur/2;
+        this.milieuL=  largeur/2;
+        this.milieuH = hauteur/2;
         this.tracerAxes();
         this.tracerGraduations();
     }
@@ -36,25 +36,25 @@ public class Plan2D {
      * Rôle : convertit une coordonnée x du PaD en abscisse du Plan2D courant
      */
     private double coordX(double x) {
-	    return (unite*x)+milieu_l;
+	    return (UNITE*x)+milieuL;
     }
 
     /*
      * Rôle : convertit une coordonnée y du PaD en ordonnée du Plan2D courant
      */
     private double coordY(double y) {
-	    return -(unite*y)+milieu_h;
+	    return -(UNITE*y)+milieuH;
     }
 
     /*
      * Rôle : trace les axes des abscisses et des ordonnées du Plan2D courant
      */
     private void tracerAxes() {
-        Dessinable axe_abscisse = new Ligne(0, milieu_h, largeur, milieu_h);
-        Dessinable axe_ordonnee = new Ligne(milieu_l, 0, milieu_l, hauteur);
+        Dessinable axeAbscisse = new Ligne(0, milieuH, largeur, milieuH);
+        Dessinable axeOrdonnee = new Ligne(milieuL, 0, milieuL, hauteur);
 
-        pad.ajouter(axe_abscisse);
-        pad.ajouter(axe_ordonnee);
+        pad.ajouter(axeAbscisse);
+        pad.ajouter(axeOrdonnee);
     }
 
     /*
@@ -63,26 +63,26 @@ public class Plan2D {
     private void tracerGraduations() {
         // Tracer les graduations sur l'axe des abscisses
         // Tracer du centre du graphique jusqu'au bord gauche
-        for (double x = milieu_l; x <= largeur; x = x + unite) {
-            Dessinable graduation_abs = new Ligne(x, milieu_h + unite/4, x, milieu_h - unite/4);
-            pad.ajouter(graduation_abs);
+        for (double x = milieuL; x <= largeur; x = x + UNITE) {
+            Dessinable graduationAbs = new Ligne(x, milieuH + UNITE/4, x, milieuH - UNITE/4);
+            pad.ajouter(graduationAbs);
         }
         // Tracer du centre du graphique jusqu'au bord droit
-        for (double x = milieu_l; x >= 0; x = x - unite) {
-            Dessinable graduation_abs = new Ligne(x, milieu_h + unite/4, x, milieu_h - unite/4);
-            pad.ajouter(graduation_abs);
+        for (double x = milieuL; x >= 0; x = x - UNITE) {
+            Dessinable graduationAbs = new Ligne(x, milieuH + UNITE/4, x, milieuH - UNITE/4);
+            pad.ajouter(graduationAbs);
         }
 
         // Tracer les graduations sur l'axe des ordonées
         // Tracer du centre du graphique jusqu'en haut 
-        for (double y = milieu_h; y <= hauteur; y = y + unite) {
-            Dessinable graduation_ord = new Ligne(milieu_l + unite/4, y, milieu_l - unite/4, y);
-            pad.ajouter(graduation_ord);
+        for (double y = milieuH; y <= hauteur; y = y + UNITE) {
+            Dessinable graduationOrd = new Ligne(milieuL + UNITE/4, y, milieuL - UNITE/4, y);
+            pad.ajouter(graduationOrd);
         }
         // Tracer du centre du graphique jusqu'en bas
-        for (double y = milieu_h; y >= 0; y = y - unite) {
-            Dessinable graduation_ord = new Ligne(milieu_l + unite/4, y, milieu_l - unite/4, y);
-            pad.ajouter(graduation_ord);
+        for (double y = milieuH; y >= 0; y = y - UNITE) {
+            Dessinable graduationOrd = new Ligne(milieuL + UNITE/4, y, milieuL - UNITE/4, y);
+            pad.ajouter(graduationOrd);
         }
 
     }
@@ -91,24 +91,29 @@ public class Plan2D {
      * Rôle : trace le Point p dans la couleur c sur le Plan2D courant
      */
     public void tracerPoint(Point p, Color c) {
-        Dessinable point = new CerclePlein(coordX(p.getX()), coordY(p.getY()), diametre_point, c);
+        Dessinable point = new CerclePlein(coordX(p.getX()), coordY(p.getY()), DIAMETRE_POINT, c);
         pad.ajouter(point);
+        tracerNomPoint(p, p.getName(), c);
     }
 
     /**
      * Rôle : trace le nom d'un Point p dans la couleur c sur le Plan2D courant
      */
-
-    public void tracerNomPoint(Point p, String nom_point, Color c) {
-        Dessinable texte_point = new Texte(coordX(p.getX()), coordY(p.getY()), nom_point, c);
-        pad.ajouter(texte_point);
+    public void tracerNomPoint(Point p, String nomPoint, Color c) {
+        Dessinable textePoint = new Texte(coordX(p.getX()), coordY(p.getY()), nomPoint, c);
+        pad.ajouter(textePoint);
     }
 
     /**
      * Rôle : trace le Segment s sur le Plan2D courant
      */
     public void tracerSegment(Segment s) {
-        Dessinable segment = new Ligne(coordX(s.getOrig().getX()), coordY(s.getOrig().getY()), coordX(s.getFin().getX()), coordY(s.getFin().getY()), PlancheADessin.ROUGE);
+        double x1 = coordX(s.getOrig().getX());
+        double y1 = coordY(s.getOrig().getY());
+        double x2 = coordX(s.getFin().getX());
+        double y2 = coordY(s.getFin().getY());
+        
+        Dessinable segment = new Ligne(x1, y1, x2, y2, PlancheADessin.ROUGE);
         pad.ajouter(segment);
     }
 }

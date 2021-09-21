@@ -1,5 +1,3 @@
-import jdk.tools.jlink.internal.plugins.VendorVMBugURLPlugin;
-
 /**
  * Cette classe représente les vecteurs dans un espace à 2 dimensions
  *
@@ -8,6 +6,7 @@ import jdk.tools.jlink.internal.plugins.VendorVMBugURLPlugin;
 public class Vecteur2 {
     private double x;
     private double y;
+    private static final double EPSILON = 1E-13;
     /* 
      * Rôle : initialise un Vecteur2 à partir des coordonnées a et b
      */
@@ -19,24 +18,24 @@ public class Vecteur2 {
     /**
      * Rôle : initialise le vecteur OA 
      */
-    public Vecteur2(Point A) {
-        this.x = A.getX();
-        this.y = A.getY();
+    public Vecteur2(Point pointA) {
+        this.x = pointA.getX();
+        this.y = pointA.getY();
     }
 
     /**
      * Rôle : initialise le vecteur AB 
      */
-    public Vecteur2(Point A, Point B) {
-        this.x = B.getX() - A.getX();
-        this.y = B.getY() - A.getY();
+    public Vecteur2(Point pointA, Point pointB) {
+        this.x = pointB.getX() - pointA.getX();
+        this.y = pointB.getY() - pointA.getY();
     }
 
     /** 
      *  Rôle : renvoie le Point P(this.x, this.y) correspondant au Vecteur OP
      */
      public Point getPoint() {
-         return new Point(this.getX(), this.getY());
+         return new Point(this.getX(), this.getY(), "P");
      }
     
     /**
@@ -76,10 +75,17 @@ public class Vecteur2 {
     }
 
     /** 
+     * Rôle : test si deux double sont quasi-egaux ou non 
+     */  
+    public static Boolean almostEqual(double a, double b, double epsilon) {
+        return Math.abs(a - b) <= epsilon;
+    }
+
+    /** 
      * Rôle : teste si le Vecteur2 courant et le Vecteur2 v sont colinéaires
      */    
     public boolean colineaire(Vecteur2 v) {
-        return (this.getX()*v.getY() - this.getY()*v.getX()) == 0;
+        return (almostEqual(this.getX()*v.getY(), this.getY()*v.getX(), EPSILON));
     }
 
     /**
