@@ -91,10 +91,6 @@ public class Segment {
         }
     }
 
-    public static Boolean almostEqual(double a, double b, double epsilon) {
-        return Math.abs(a - b) <= epsilon;
-    }
-
     /**
      * rôle : renvoie le Point d'intersection entre le Segment courant
      *        et le Segment s. Si pas de point d'intersaction, la
@@ -127,7 +123,7 @@ public class Segment {
             double xIcd = kCD * (xD-xC) +xC;
             double yIcd = kCD * (yD-yC) +yC;
 
-            if (almostEqual(xIab, xIcd, EPSILON) && (almostEqual(yIab, yIcd, EPSILON))) {
+            if (Vecteur2.almostEqual(xIab, xIcd, EPSILON) && (Vecteur2.almostEqual(yIab, yIcd, EPSILON))) {
                 return new Point(xIab, yIab, "I");
             }
         }
