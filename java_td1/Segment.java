@@ -27,7 +27,9 @@ public class Segment {
             this.orig = a;
             this.fin = b;
         }
-        else {System.out.println("Couldn't initialize because A = B");}
+        else {
+            System.out.println("Couldn't initialize because A = B.");
+        }
     }
     
     /**
@@ -86,9 +88,7 @@ public class Segment {
             double k = vecteurAP.getX() / vecteurAB.getX();
             return ((k <= 1) && (k >= 0));
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     /**

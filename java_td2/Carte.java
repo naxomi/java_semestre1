@@ -37,8 +37,8 @@ public class Carte {
             @param pad un <code>PlancheADessin</code>. */
     public void dessiner(PlancheADessin pad, double x, double y) {
         // ---- Methode 1 ----
+        this.img.setOrig(x, y);
         pad.ajouter(this.img);
-        pad.déplacer(this.img, x, y);
 
         // ---- Methode 2 ----
         // Dessinable carte = new PaD.Image(x, y, "java_td2/Cartes/" + this.valeur + "-" + this.couleur +  ".gif");
