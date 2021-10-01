@@ -5,7 +5,8 @@
     ],
     "java.project.sourcePaths": [
         "java_td2",
+        "java_td1",
         "java_td0",
-        "java_td1"
+        ""
     ]
 }
