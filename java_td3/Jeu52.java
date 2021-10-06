@@ -67,29 +67,13 @@ public class Jeu52 {
     public void ordonner() {
         
         for (int indexActualCard = 0; indexActualCard < NB_CARTES; indexActualCard++) {
-
-            // Manage the beginning of the line, when we need to change of card color
-            if (indexActualCard % 13 == 0) {
-                for (int j = indexActualCard; j < NB_CARTES; j++) {
-                    if ((this.jeu[j].getValeur().ordinal() == 0) && (this.jeu[j].getCouleur().ordinal() == indexActualCard / 13)) {
-                        exchangeTwoCards(indexActualCard, j);
-                        break;
-                    }
+            int indexMinCard = indexActualCard;
+            for (int j = indexActualCard; j < NB_CARTES; j++) {
+                if (this.jeu[indexMinCard].compareTo(this.jeu[j]) == 1) {
+                    indexMinCard = j;
                 }
             }
-
-            // Manage all the cells except the 4 beginning of the lines
-            else {
-                for (int j = indexActualCard; j < NB_CARTES; j++) {
-                    Boolean cond1 = this.jeu[j].getValeur().ordinal() == (this.jeu[indexActualCard-1].getValeur().ordinal() + 1);
-                    Boolean cond2 = this.jeu[j].getCouleur().ordinal() == this.jeu[indexActualCard-1].getCouleur().ordinal();
-
-                    if (cond1 && cond2) {
-                        exchangeTwoCards(indexActualCard, j);
-                        break;
-                    }
-                }
-            } 
-        }
+            exchangeTwoCards(indexActualCard, indexMinCard);
+         }
     }
 }

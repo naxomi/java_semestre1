@@ -14,7 +14,7 @@ public class Jeu {
             }
             Dessinable dessinCarte = lesCartes.getJeu()[i].getImg();
             fenetreJeu.ajouter(dessinCarte);
-            double x = (i % 13) * Carte.LARGEUR_IMG;
+            double x = (i % 13) * Double.valueOf(Carte.LARGEUR_IMG);
             fenetreJeu.déplacer(dessinCarte, x, y);
         }
     }
@@ -48,13 +48,11 @@ public class Jeu {
 
             else if (userInput == 0) {
                 System.out.println("La boucle d'input finit");
-                userInputScanner.close();
                 break;
             }
             else {
                 System.out.println("Entrez une valeur valide");
             }
-
         }
     }
 }

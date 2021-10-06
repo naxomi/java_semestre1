@@ -30,11 +30,11 @@ public class Carte implements Comparable<Carte> {
 
     @Override
     public String toString() {
-        // return (" " +  this.valeur.toString().substring(0, 2) + "|" + this.couleur.toString().substring(0, 2) + " ");
         return ("[" +  this.valeur + "(" + this.valeur.valeur() + ")," + this.couleur + "]");
     }
 
-    public Integer compareTo(Carte c) {
+    @Override
+    public int compareTo(Carte c) {
         if (this.getCouleur().ordinal() > c.getCouleur().ordinal()) {
             return 1;
         }
