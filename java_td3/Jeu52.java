@@ -51,9 +51,7 @@ public class Jeu52 {
             int randNumber2 = random.nextInt(NB_CARTES);
 
             if (randNumber1 != randNumber2) {
-                Carte temporaryValue = this.jeu[randNumber1];
-                this.jeu[randNumber1] = this.jeu[randNumber2];
-                this.jeu[randNumber2] = temporaryValue;
+                exchangeTwoCards(randNumber1, randNumber2);
             }
         }
     }
