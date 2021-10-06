@@ -4,6 +4,20 @@ import PaD.*;
 import java.util.Scanner;
 
 public class Jeu {
+
+    public static void displayCards(Jeu52 lesCartes, PlancheADessin fenetreJeu) {
+        double y = 15;
+        for (int i = 0; i < 52; i++) {
+
+            if ((i != 0) && (i % 13 == 0)) {
+                y += Carte.LONGUEUR_IMG;
+            }
+            Dessinable dessinCarte = lesCartes.getJeu()[i].getImg();
+            fenetreJeu.ajouter(dessinCarte);
+            double x = (i % 13) * Carte.LARGEUR_IMG;
+            fenetreJeu.déplacer(dessinCarte, x, y);
+        }
+    }
     public static void main(String[] args) {
         
         Jeu52 lesCartes = new Jeu52();
@@ -17,27 +31,19 @@ public class Jeu {
             int userInput = userInputScanner.nextInt();
 
             if (userInput == 1) {
-                double y = 15;
-                for (int i = 0; i < 52; i++) {
-
-                    if ((i != 0) && (i % 13 == 0)) {
-                        y += Carte.LONGUEUR_IMG;
-                    }
-                    Dessinable dessinCarte = lesCartes.getJeu()[i].getImg();
-                    fenetreJeu.ajouter(dessinCarte);
-                    double x = (i % 13) * Carte.LARGEUR_IMG;
-                    fenetreJeu.déplacer(dessinCarte, x, y);
-                }
+                displayCards(lesCartes, fenetreJeu);
             }
 
             else if (userInput == 2) {
                 lesCartes.melanger();
                 System.out.println("Les cartes ont ete melangees");
+                displayCards(lesCartes, fenetreJeu);
             }
 
             else if (userInput == 3) {
                 lesCartes.ordonner();
                 System.out.println("Les cartes ont ete ordonnees");
+                displayCards(lesCartes, fenetreJeu);
             }
 
             else if (userInput == 0) {

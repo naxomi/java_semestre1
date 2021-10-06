@@ -2,7 +2,7 @@ package java_td3;
 
 import PaD.*;
 
-public class Carte {
+public class Carte implements Comparable<Carte> {
     private Couleur couleur;
     private Valeur valeur;
     private PaD.Image img;
@@ -35,17 +35,22 @@ public class Carte {
     }
 
     public Integer compareTo(Carte c) {
-        int ordinalCard1 = this.valeur.ordinal();
-        int ordinalCard2 = c.valeur.ordinal();
-
-        if (ordinalCard1 > ordinalCard2) {
+        if (this.getCouleur().ordinal() > c.getCouleur().ordinal()) {
             return 1;
         }
-        else if (ordinalCard1 < ordinalCard2) {
+        else if (this.getCouleur().ordinal() < c.getCouleur().ordinal()) {
             return -1;
         }
         else {
-            return 0;
+            if (this.getValeur().ordinal() > c.getValeur().ordinal()) {
+                return 1;
+            }
+            else if (this.getValeur().ordinal() < c.getValeur().ordinal()) {
+                return -1;
+            }
+            else {
+                return 0;
+            }
         }
     }
 
