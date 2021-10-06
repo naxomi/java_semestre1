@@ -1,6 +1,6 @@
 /**
- * Cette classe représente les segments de droite entre 2 points du plan. 
- * Ces deux points doivent être différents.
+ * Cette classe représente les segments de droite entre 2 points du plan. Ces
+ * deux points doivent être différents.
  *
  * @author V. Granet vg@unice.fr
  */
@@ -11,27 +11,26 @@ public class Segment {
     private static final double EPSILON = 1E-15;
 
     /**
-     * Rôle : initialise le Segment de droite d'orgine O et de fin a 
-     * Antécédent : a != 0
+     * Rôle : initialise le Segment de droite d'orgine O et de fin a Antécédent : a
+     * != 0
      */
     public Segment(Point a) {
         this(new Point(), a);
     }
-    
+
     /**
-     * Rôle : initialise le Segment de droite d'orgine a et de fin b
-     * Antécédent : a != b
+     * Rôle : initialise le Segment de droite d'orgine a et de fin b Antécédent : a
+     * != b
      */
     public Segment(Point a, Point b) {
         if (!(a.egal(b))) {
             this.orig = a;
             this.fin = b;
-        }
-        else {
+        } else {
             System.out.println("Couldn't initialize because A = B.");
         }
     }
-    
+
     /**
      * Rôle : renvoie le point d'origne du Segment courant
      */
@@ -61,16 +60,16 @@ public class Segment {
     }
 
     /**
-     * Rôle : renvoie la représentation du Segment courant sous
-     *        forme d'une chaîne de caratères
+     * Rôle : renvoie la représentation du Segment courant sous forme d'une chaîne
+     * de caratères
      */
     @Override
     public String toString() {
-	    return "[(" + this.getOrig() + ") ; (" + this.getFin() + ")]"; 
+        return "[(" + this.getOrig() + ") ; (" + this.getFin() + ")]";
     }
+
     /**
-     * Rôle : renvoie la longueur du Segment courant sous
-     *        forme d'un double
+     * Rôle : renvoie la longueur du Segment courant sous forme d'un double
      */
     public double longueur() {
         return this.getOrig().distance(this.getFin());
@@ -78,12 +77,12 @@ public class Segment {
 
     /**
      * rôle : teste si le Point p appartient au Segment courant
-     */ 
+     */
     public boolean appartient(Point p) {
 
         Vecteur2 vecteurAB = new Vecteur2(this.getOrig(), this.getFin());
         Vecteur2 vecteurAP = new Vecteur2(this.getOrig(), p);
-    
+
         if (vecteurAB.colineaire(vecteurAP)) {
             double k = vecteurAP.getX() / vecteurAB.getX();
             return ((k <= 1) && (k >= 0));
@@ -92,9 +91,8 @@ public class Segment {
     }
 
     /**
-     * rôle : renvoie le Point d'intersection entre le Segment courant
-     *        et le Segment s. Si pas de point d'intersaction, la
-     *        fonction renvoie null
+     * rôle : renvoie le Point d'intersection entre le Segment courant et le Segment
+     * s. Si pas de point d'intersaction, la fonction renvoie null
      */
     public Point intersection(Segment s) {
 
@@ -108,26 +106,26 @@ public class Segment {
         double yC = s.getOrig().getY();
         double yD = s.getFin().getY();
 
-        double kABnumerateur = (yA-yC) * (xD-xC) - (xA-xC)*(yD-yC);
-        double kABdenominateur = (xB-xA) * (yD-yC) - (yB-yA) * (xD-xC);
-        double kCDnumerateur = (xC-xA) * (yB-yA) + (yA-yC) * (xB-xA);
-        double kCDdenominateur = (yD-yC) * (xB-xA) - (xD-xC) * (yB-yA);
+        double kABnumerateur = (yA - yC) * (xD - xC) - (xA - xC) * (yD - yC);
+        double kABdenominateur = (xB - xA) * (yD - yC) - (yB - yA) * (xD - xC);
+        double kCDnumerateur = (xC - xA) * (yB - yA) + (yA - yC) * (xB - xA);
+        double kCDdenominateur = (yD - yC) * (xB - xA) - (xD - xC) * (yB - yA);
 
         double kAB = kABnumerateur / kABdenominateur;
         double kCD = kCDnumerateur / kCDdenominateur;
-        
-        if ((kAB >= 0 && kAB <= 1) && (kCD >= 0 && kCD <= 1)) {
-            double xIab = kAB * (xB-xA) +xA;
-            double yIab = kAB * (yB-yA) +yA;
 
-            double xIcd = kCD * (xD-xC) +xC;
-            double yIcd = kCD * (yD-yC) +yC;
+        if ((kAB >= 0 && kAB <= 1) && (kCD >= 0 && kCD <= 1)) {
+            double xIab = kAB * (xB - xA) + xA;
+            double yIab = kAB * (yB - yA) + yA;
+
+            double xIcd = kCD * (xD - xC) + xC;
+            double yIcd = kCD * (yD - yC) + yC;
 
             if (Vecteur2.almostEqual(xIab, xIcd, EPSILON) && (Vecteur2.almostEqual(yIab, yIcd, EPSILON))) {
                 return new Point(xIab, yIab, "I");
             }
         }
-        
+
         return null;
     }
 }

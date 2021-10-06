@@ -2,9 +2,8 @@ import PaD.*;
 import java.awt.Color;
 
 /**
- * Cette classe représente le plan cartésien et permet de visualiser à
- * l'aide de la planche à dessin (PaD) des segments de droite et des
- * points du plan
+ * Cette classe représente le plan cartésien et permet de visualiser à l'aide de
+ * la planche à dessin (PaD) des segments de droite et des points du plan
  *
  * @author V. Granet vg@unice.fr
  */
@@ -26,8 +25,8 @@ public class Plan2D {
         this.pad = new PlancheADessin(true);
         this.largeur = pad.getLargeur();
         this.hauteur = pad.getHauteur();
-        this.milieuL=  largeur/2;
-        this.milieuH = hauteur/2;
+        this.milieuL = largeur / 2;
+        this.milieuH = hauteur / 2;
         this.tracerAxes();
         this.tracerGraduations();
     }
@@ -36,14 +35,14 @@ public class Plan2D {
      * Rôle : convertit une coordonnée x du PaD en abscisse du Plan2D courant
      */
     private double coordX(double x) {
-	    return (UNITE*x)+milieuL;
+        return (UNITE * x) + milieuL;
     }
 
     /*
      * Rôle : convertit une coordonnée y du PaD en ordonnée du Plan2D courant
      */
     private double coordY(double y) {
-	    return -(UNITE*y)+milieuH;
+        return -(UNITE * y) + milieuH;
     }
 
     /*
@@ -64,24 +63,24 @@ public class Plan2D {
         // Tracer les graduations sur l'axe des abscisses
         // Tracer du centre du graphique jusqu'au bord gauche
         for (double x = milieuL; x <= largeur; x = x + UNITE) {
-            Dessinable graduationAbs = new Ligne(x, milieuH + UNITE/4, x, milieuH - UNITE/4);
+            Dessinable graduationAbs = new Ligne(x, milieuH + UNITE / 4, x, milieuH - UNITE / 4);
             pad.ajouter(graduationAbs);
         }
         // Tracer du centre du graphique jusqu'au bord droit
         for (double x = milieuL; x >= 0; x = x - UNITE) {
-            Dessinable graduationAbs = new Ligne(x, milieuH + UNITE/4, x, milieuH - UNITE/4);
+            Dessinable graduationAbs = new Ligne(x, milieuH + UNITE / 4, x, milieuH - UNITE / 4);
             pad.ajouter(graduationAbs);
         }
 
         // Tracer les graduations sur l'axe des ordonées
-        // Tracer du centre du graphique jusqu'en haut 
+        // Tracer du centre du graphique jusqu'en haut
         for (double y = milieuH; y <= hauteur; y = y + UNITE) {
-            Dessinable graduationOrd = new Ligne(milieuL + UNITE/4, y, milieuL - UNITE/4, y);
+            Dessinable graduationOrd = new Ligne(milieuL + UNITE / 4, y, milieuL - UNITE / 4, y);
             pad.ajouter(graduationOrd);
         }
         // Tracer du centre du graphique jusqu'en bas
         for (double y = milieuH; y >= 0; y = y - UNITE) {
-            Dessinable graduationOrd = new Ligne(milieuL + UNITE/4, y, milieuL - UNITE/4, y);
+            Dessinable graduationOrd = new Ligne(milieuL + UNITE / 4, y, milieuL - UNITE / 4, y);
             pad.ajouter(graduationOrd);
         }
 
@@ -112,7 +111,7 @@ public class Plan2D {
         double y1 = coordY(s.getOrig().getY());
         double x2 = coordX(s.getFin().getX());
         double y2 = coordY(s.getFin().getY());
-        
+
         Dessinable segment = new Ligne(x1, y1, x2, y2, PlancheADessin.ROUGE);
         pad.ajouter(segment);
     }

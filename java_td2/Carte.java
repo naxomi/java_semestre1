@@ -13,7 +13,7 @@ public class Carte {
 
     @Override
     public String toString() {
-        return ("[" +  this.valeur + "(" + this.valeur.valeur() + ")," + this.couleur + "]");
+        return ("[" + this.valeur + "(" + this.valeur.valeur() + ")," + this.couleur + "]");
     }
 
     public Integer compareTo(Carte c) {
@@ -22,26 +22,31 @@ public class Carte {
 
         if (ordinalCard1 > ordinalCard2) {
             return 1;
-        }
-        else if (ordinalCard1 < ordinalCard2) {
+        } else if (ordinalCard1 < ordinalCard2) {
             return -1;
-        }
-        else {
+        } else {
             return 0;
         }
     }
 
-/*         Role : dessine la carte a jouer courante this en position (x,y) sur la planche a dessiner graphique pad
-            @param x un <code>int</code>
-            @param y un <code>int</code>.
-            @param pad un <code>PlancheADessin</code>. */
+    /*
+     * Role : dessine la carte a jouer courante this en position (x,y) sur la
+     * planche a dessiner graphique pad
+     * 
+     * @param x un <code>int</code>
+     * 
+     * @param y un <code>int</code>.
+     * 
+     * @param pad un <code>PlancheADessin</code>.
+     */
     public void dessiner(PlancheADessin pad, double x, double y) {
         // ---- Methode 1 ----
         this.img.setOrig(x, y);
         pad.ajouter(this.img);
 
         // ---- Methode 2 ----
-        // Dessinable carte = new PaD.Image(x, y, "java_td2/Cartes/" + this.valeur + "-" + this.couleur +  ".gif");
+        // Dessinable carte = new PaD.Image(x, y, "java_td2/Cartes/" + this.valeur + "-"
+        // + this.couleur + ".gif");
         // pad.ajouter(carte);
     }
 

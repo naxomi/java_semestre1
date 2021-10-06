@@ -12,6 +12,6 @@ public class Test2 {
         for (Valeur v : Valeur.values()) {
             System.out.println(v + " : " + v.valeur());
         }
-        
+
     }
 }

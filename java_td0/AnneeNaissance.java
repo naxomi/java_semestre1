@@ -1,10 +1,10 @@
-import java.util.Scanner; 
+import java.util.Scanner;
 import java.util.Calendar;
 
 public class AnneeNaissance {
-	public static void main(String [] args) {
+	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		System.out.print("Votre prenom : "); 
+		System.out.print("Votre prenom : ");
 		String prenom = sc.nextLine();
 
 		System.out.print("Votre age : ");
@@ -16,5 +16,5 @@ public class AnneeNaissance {
 		System.out.println(prenom + " vous etes ne en " + (anneeCourante - age));
 
 		sc.close();
-		}
+	}
 }

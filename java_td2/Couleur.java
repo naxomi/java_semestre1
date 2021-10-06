@@ -1,1 +1,3 @@
-public enum Couleur { trefle, carreau, coeur, pique }
+public enum Couleur {
+    trefle, carreau, coeur, pique
+}

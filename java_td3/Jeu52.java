@@ -3,7 +3,7 @@ package java_td3;
 import java.util.Random;
 
 public class Jeu52 {
-    private Carte []jeu;
+    private Carte[] jeu;
     private Random random = new Random();
     private static final Integer NB_CARTES = 52;
 
@@ -11,7 +11,7 @@ public class Jeu52 {
         this.jeu = new Carte[NB_CARTES];
 
         int i = 0;
-        for (Couleur color : Couleur.values()){
+        for (Couleur color : Couleur.values()) {
             for (Valeur value : Valeur.values()) {
                 this.jeu[i] = new Carte(value, color, new PaD.Image("java_td3/Cartes/" + value + "-" + color + ".gif"));
                 i++;
@@ -26,8 +26,7 @@ public class Jeu52 {
     public Carte getCarte(int indice) {
         if (indice >= 0 && indice < NB_CARTES) {
             return this.jeu[indice];
-        }
-        else {
+        } else {
             return null;
         }
     }
@@ -63,7 +62,7 @@ public class Jeu52 {
     }
 
     public void ordonner() {
-        
+
         for (int indexActualCard = 0; indexActualCard < NB_CARTES; indexActualCard++) {
             int indexMinCard = indexActualCard;
             for (int j = indexActualCard; j < NB_CARTES; j++) {
@@ -72,6 +71,6 @@ public class Jeu52 {
                 }
             }
             exchangeTwoCards(indexActualCard, indexMinCard);
-         }
+        }
     }
 }

@@ -41,17 +41,19 @@ public class Triangle {
             case S3: {
                 this.point3 = p;
             }
-            
+
         }
     }
 
     public double perimeter() {
-        return (this.point1.distance(this.point2) + this.point1.distance(this.point3) + this.point2.distance(this.point3));
+        return (this.point1.distance(this.point2) + this.point1.distance(this.point3)
+                + this.point2.distance(this.point3));
     }
 
     @Override
     public String toString() {
-        return ("[(" + this.point1 + ");(" + this.point2 + ");(" + this.point3 + ")] ; perimetre de t :" + this.perimeter());
+        return ("[(" + this.point1 + ");(" + this.point2 + ");(" + this.point3 + ")] ; perimetre de t :"
+                + this.perimeter());
     }
 
 }
