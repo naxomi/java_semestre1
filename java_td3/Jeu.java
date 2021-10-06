@@ -12,10 +12,9 @@ public class Jeu {
             if ((i != 0) && (i % 13 == 0)) {
                 y += Carte.LONGUEUR_IMG;
             }
-            Dessinable dessinCarte = lesCartes.getJeu()[i].getImg();
-            fenetreJeu.ajouter(dessinCarte);
             double x = (i % 13) * Double.valueOf(Carte.LARGEUR_IMG);
-            fenetreJeu.déplacer(dessinCarte, x, y);
+            Carte imgToPlace = lesCartes.getCarte(i);
+            imgToPlace.dessiner(fenetreJeu, x, y);
         }
     }
     public static void main(String[] args) {
@@ -47,7 +46,7 @@ public class Jeu {
             }
 
             else if (userInput == 0) {
-                System.out.println("La boucle d'input finit");
+                System.out.println("La boucle d'input est finie");
                 break;
             }
             else {
