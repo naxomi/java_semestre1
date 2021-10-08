@@ -1,5 +1,6 @@
 package java_td3;
 
+import PaD.PlancheADessin;
 import java.util.Random;
 
 public class Jeu52 {
@@ -28,6 +29,19 @@ public class Jeu52 {
             return this.jeu[indice];
         } else {
             return null;
+        }
+    }
+
+    public void dessiner(PlancheADessin fenetreJeu) {
+        double y = 15;
+        for (int i = 0; i < 52; i++) {
+
+            if ((i != 0) && (i % 13 == 0)) {
+                y += Carte.LONGUEUR_IMG;
+            }
+            double x = (i % 13) * Double.valueOf(Carte.LARGEUR_IMG);
+            Carte imgToPlace = this.getCarte(i);
+            imgToPlace.dessiner(fenetreJeu, x, y);
         }
     }
 

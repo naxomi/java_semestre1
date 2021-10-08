@@ -1,23 +1,9 @@
 package java_td3;
 
 import PaD.*;
-
 import java.util.Scanner;
 
 public class Jeu {
-
-    public static void displayCards(Jeu52 lesCartes, PlancheADessin fenetreJeu) {
-        double y = 15;
-        for (int i = 0; i < 52; i++) {
-
-            if ((i != 0) && (i % 13 == 0)) {
-                y += Carte.LONGUEUR_IMG;
-            }
-            double x = (i % 13) * Double.valueOf(Carte.LARGEUR_IMG);
-            Carte imgToPlace = lesCartes.getCarte(i);
-            imgToPlace.dessiner(fenetreJeu, x, y);
-        }
-    }
 
     public static void main(String[] args) {
 
@@ -33,19 +19,19 @@ public class Jeu {
             int userInput = userInputScanner.nextInt();
 
             if (userInput == 1) {
-                displayCards(lesCartes, fenetreJeu);
+                lesCartes.dessiner(fenetreJeu);
             }
 
             else if (userInput == 2) {
                 lesCartes.melanger();
                 System.out.println("Les cartes ont ete melangees");
-                displayCards(lesCartes, fenetreJeu);
+                lesCartes.dessiner(fenetreJeu);
             }
 
             else if (userInput == 3) {
                 lesCartes.ordonner();
                 System.out.println("Les cartes ont ete ordonnees");
-                displayCards(lesCartes, fenetreJeu);
+                lesCartes.dessiner(fenetreJeu);
             }
 
             else if (userInput == 0) {
