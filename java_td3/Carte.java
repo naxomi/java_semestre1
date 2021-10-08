@@ -7,8 +7,8 @@ public class Carte implements Comparable<Carte> {
     private Valeur valeur;
     private PaD.Image img;
 
-    public static final int LARGEUR_IMG = 71;
-    public static final int LONGUEUR_IMG = 100;
+    public static final double LARGEUR_IMG = (new PaD.Image("java_td3/Cartes/dos.gif")).getLargeur();
+    public static final double LONGUEUR_IMG = (new PaD.Image("java_td3/Cartes/dos.gif")).getHauteur();
 
     public Carte(Valeur v, Couleur c, PaD.Image image) {
         this.valeur = v;

@@ -8,7 +8,8 @@ public class Jeu {
     public static void main(String[] args) {
 
         Jeu52 lesCartes = new Jeu52();
-        PlancheADessin fenetreJeu = new PlancheADessin(Carte.LARGEUR_IMG * 13, Carte.LONGUEUR_IMG * 4 + 30, true);
+        PlancheADessin fenetreJeu = new PlancheADessin((int) Carte.LARGEUR_IMG * 13, (int) Carte.LONGUEUR_IMG * 4 + 30,
+                true);
 
         while (true) {
 
