@@ -5,15 +5,26 @@ import PaD.*;
 public class Carte implements Comparable<Carte> {
     private Couleur couleur;
     private Valeur valeur;
-    private PaD.Image img;
 
-    public static final double LARGEUR_IMG = (new PaD.Image("java_td3/Cartes/dos.gif")).getLargeur();
-    public static final double LONGUEUR_IMG = (new PaD.Image("java_td3/Cartes/dos.gif")).getHauteur();
+    private PaD.Image img;
+    private PaD.Image carteDos;
+    private PaD.Image carteFace;
+
+    private double x;
+    private double y;
+
+    public static final String CARTE_DOS_PATH = "java_td3/Cartes/dos.gif";
+
+    public static final int LARGEUR_IMG = (int) (new PaD.Image(CARTE_DOS_PATH)).getLargeur();
+    public static final int LONGUEUR_IMG = (int) (new PaD.Image(CARTE_DOS_PATH)).getHauteur();
 
     public Carte(Valeur v, Couleur c, PaD.Image image) {
         this.valeur = v;
         this.couleur = c;
         this.img = image;
+
+        this.carteFace = image;
+        this.carteDos = new PaD.Image(CARTE_DOS_PATH);
     }
 
     public PaD.Image getImg() {
@@ -26,6 +37,10 @@ public class Carte implements Comparable<Carte> {
 
     public Couleur getCouleur() {
         return this.couleur;
+    }
+
+    public PaD.Image getCarteDos() {
+        return this.carteDos;
     }
 
     @Override
@@ -51,8 +66,23 @@ public class Carte implements Comparable<Carte> {
     }
 
     public void dessiner(PlancheADessin pad, double x, double y) {
+        this.x = x;
+        this.y = y;
+
         this.img.setOrig(x, y);
         pad.ajouter(this.img);
+    }
+
+    public void retounerCarte(PlancheADessin pad) {
+        pad.supprimer(this.img);
+
+        if (this.img == this.carteFace) {
+            this.img = this.carteDos;
+        } else {
+            this.img = this.carteFace;
+        }
+
+        dessiner(pad, this.x, this.y);
     }
 
 }

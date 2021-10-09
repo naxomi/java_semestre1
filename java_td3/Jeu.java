@@ -8,13 +8,12 @@ public class Jeu {
     public static void main(String[] args) {
 
         Jeu52 lesCartes = new Jeu52();
-        PlancheADessin fenetreJeu = new PlancheADessin((int) Carte.LARGEUR_IMG * 13, (int) Carte.LONGUEUR_IMG * 4 + 30,
-                true);
+        PlancheADessin fenetreJeu = new PlancheADessin(Carte.LARGEUR_IMG * 13, Carte.LONGUEUR_IMG * 4 + 30, true);
 
         while (true) {
 
             System.out.println(
-                    "Que voulez-vous faire ? \n 1 : Montrer les cartes dans leur état actuel \n 2 : Melanger les cartes \n 3 : Ordonner les cartes \n 0 : Quitter la boucle d'input");
+                    "Que voulez-vous faire ? \n 1 : Montrer les cartes dans leur état actuel \n 2 : Melanger les cartes \n 3 : Ordonner les cartes \n 4 : Retourner toutes les cartes \n 0 : Quitter la boucle d'input");
 
             Scanner userInputScanner = new Scanner(System.in);
             int userInput = userInputScanner.nextInt();
@@ -31,6 +30,12 @@ public class Jeu {
 
             else if (userInput == 3) {
                 lesCartes.ordonner();
+                System.out.println("Les cartes ont ete ordonnees");
+                lesCartes.dessiner(fenetreJeu);
+            }
+
+            else if (userInput == 4) {
+                lesCartes.retournerToutesLesCartes(fenetreJeu);
                 System.out.println("Les cartes ont ete ordonnees");
                 lesCartes.dessiner(fenetreJeu);
             }

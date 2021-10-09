@@ -34,7 +34,7 @@ public class Jeu52 {
 
     public void dessiner(PlancheADessin fenetreJeu) {
         double y = 15;
-        for (int i = 0; i < 52; i++) {
+        for (int i = 0; i < NB_CARTES; i++) {
 
             if ((i != 0) && (i % 13 == 0)) {
                 y += Carte.LONGUEUR_IMG;
@@ -85,6 +85,12 @@ public class Jeu52 {
                 }
             }
             exchangeTwoCards(indexActualCard, indexMinCard);
+        }
+    }
+
+    public void retournerToutesLesCartes(PlancheADessin fenetreJeu) {
+        for (int i = 0; i < 52; i++) {
+            this.getCarte(i).retounerCarte(fenetreJeu);
         }
     }
 }
