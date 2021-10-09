@@ -1,6 +1,5 @@
 package java_td4;
 
-import java.util.Random;
 import PaD.PlancheADessin;
 
 public class TestTd4 {
@@ -47,11 +46,10 @@ public class TestTd4 {
         // }
 
         // Question 22 -> 23
-        Random random = new Random();
         Figure[] tf = new Figure[4];
 
         for (int i = 0; i < 4; i++) {
-            Integer randNumber = random.nextInt(4);
+            Integer randNumber = UsefulMethod.randomInteger(0, 4);
 
             if (randNumber == 0) {
                 tf[i] = new Ellipse(15.0, 20.0);
