@@ -42,7 +42,8 @@ public class JeuBlackJack {
     }
 
     public void displayWinner(Joueur winner) {
-        dialogBox("The player '" + winner.getName() + "' won with a total of " + winner.getScore(), "Game finished");
+        dialogBox("The player '" + winner.getName() + "' won with a total of " + winner.getScore() + " points.",
+                "Game finished");
     }
 
     public void displayText(String text) {
@@ -63,6 +64,7 @@ public class JeuBlackJack {
         this.jeuDeCarte = new Jeu52();
         this.jeuDeCarte.melanger();
         this.jeuDeCarte.retournerToutesLesCartes(this.fenetreJeu);
+        this.fenetreJeu.clear();
 
         // Initiate all players
         Integer counter = 0;
@@ -94,18 +96,13 @@ public class JeuBlackJack {
         return winnerFound;
     }
 
-    public Joueur getGameWinner() { // Need to change this method
-        Joueur winner = null;
-        Integer winningScore = 0;
+    public Joueur getGameWinner() {
         for (Joueur joueur : this.getListeJoueur()) {
-            if (joueur.getScore() > winningScore && joueur.getScore() <= 21) {
-                winner = joueur;
-                winningScore = joueur.getScore();
-            } else {
-                winner = null;
+            if (joueur.getScore() <= 21) {
+                return joueur;
             }
         }
-        return winner;
+        return null;
     }
 
     public static void playerPlays(Joueur player, PlancheADessin fenetreJeu) {
@@ -117,7 +114,7 @@ public class JeuBlackJack {
 
     public static void main(String[] args) {
 
-        JeuBlackJack game = new JeuBlackJack("Jaime", "Raphaël", "test");
+        JeuBlackJack game = new JeuBlackJack("Hugo", "Raphaël", "Tony", "Théo");
         game.displayGame();
 
         // Start of the game loop
@@ -129,21 +126,21 @@ public class JeuBlackJack {
                     playerPlays(game.getJoueur(i), game.getFenetreJeu());
                     game.getFenetreJeu().clear();
                     game.displayGame();
-                } else if (Boolean.TRUE.equals(game.getJoueur(i).playerWins())) {
-                    // Test if the player has won thanks to his choice
-                    gameContinues = false;
-                    game.displayWinner(game.getJoueur(i));
-                    break;
-                } else if (i == game.getNumberOfPlayers()) {
-                    // If none of the players can play then it is the end of the game
-                    game.displayText("No one won the game.....");
-                    gameContinues = false;
                 }
-            }
-            if (Boolean.TRUE.equals(game.gameIsWon())) {
-                // Verify if the game is won by any players
-                game.displayWinner(game.getGameWinner());
-                gameContinues = false;
+
+                if (Boolean.TRUE.equals(game.getJoueur(i).playerWins())) {
+                    // Test if the player has exactly 21 points thanks to his choice
+                    game.displayWinner(game.getJoueur(i));
+                    gameContinues = false;
+                    break;
+                }
+
+                if (Boolean.TRUE.equals(game.gameIsWon())) {
+                    // Verify if the game is won by any players
+                    game.displayWinner(game.getGameWinner());
+                    gameContinues = false;
+                    break;
+                }
             }
         }
     }
