@@ -81,6 +81,7 @@ public class Jeu52 {
             int indexMinCard = indexActualCard;
             for (int j = indexActualCard; j < NB_CARTES; j++) {
                 if (this.jeu[indexMinCard].compareTo(this.jeu[j]) == 1) {
+                    // compareTo() returns 1 if the self is higher.
                     indexMinCard = j;
                 }
             }

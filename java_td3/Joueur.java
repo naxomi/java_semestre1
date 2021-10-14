@@ -41,6 +41,14 @@ public class Joueur {
         return this.nom;
     }
 
+    public Boolean playerIsWinning() {
+        return (this.getScore() <= 21);
+    }
+
+    public Boolean playerWins() {
+        return (this.getScore() == 21);
+    }
+
     public void montrerCarte(PlancheADessin fenetreJeu, double hauteur) {
         hauteur += 15; // Value to negligate the bar at the top of the window
 
