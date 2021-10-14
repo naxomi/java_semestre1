@@ -21,10 +21,10 @@ public class Carte implements Comparable<Carte> {
     public Carte(Valeur v, Couleur c, PaD.Image image) {
         this.valeur = v;
         this.couleur = c;
-        this.img = image;
 
         this.carteFace = image;
         this.carteDos = new PaD.Image(CARTE_DOS_PATH);
+        this.img = this.carteDos;
     }
 
     public PaD.Image getImg() {

@@ -63,8 +63,6 @@ public class JeuBlackJack {
         // Initiate the 52 cards set
         this.jeuDeCarte = new Jeu52();
         this.jeuDeCarte.melanger();
-        this.jeuDeCarte.retournerToutesLesCartes(this.fenetreJeu);
-        this.fenetreJeu.clear();
 
         // Initiate all players
         Integer counter = 0;
@@ -114,7 +112,7 @@ public class JeuBlackJack {
 
     public static void main(String[] args) {
 
-        JeuBlackJack game = new JeuBlackJack("Hugo", "Raphaël", "Tony", "Théo");
+        JeuBlackJack game = new JeuBlackJack("Hugo", "Raphaël", "Jaime", "Tony");
         game.displayGame();
 
         // Start of the game loop
