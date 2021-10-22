@@ -23,13 +23,13 @@ public class TestFichier {
         fichier.aleatoire(100);
     }
 
-    public static void question5() {
-        Fichier fichier = new Fichier("fileQ5");
+    public static void question5_6() {
+        Fichier fichier = new Fichier("fileQ5_6");
         fichier.aleatoire(10);
         System.out.println("Filecontent : " + fichier);
     }
 
     public static void main(String[] args) {
-        question5();
+        question5_6();
     }
 }
