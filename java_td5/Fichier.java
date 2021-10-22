@@ -1,8 +1,12 @@
 package java_td5;
 
 import java.io.DataOutputStream;
-import java.io.FileNotFoundException;
+import java.io.EOFException;
 import java.io.FileOutputStream;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -40,5 +44,28 @@ public class Fichier {
     @Override
     public String toString() {
 
+        StringBuilder fileContent = new StringBuilder();
+        DataInputStream dataIn = null;
+        try {
+            Path currentDirectoryPath = FileSystems.getDefault().getPath("").toAbsolutePath();
+            String filePath = currentDirectoryPath.toString() + "/java_td5/" + this.nomFichier;
+            dataIn = new DataInputStream(new FileInputStream(filePath));
+
+            Boolean endNotReached = true;
+            while (Boolean.TRUE.equals(endNotReached)) {
+                try {
+                    Integer readNumber = dataIn.readInt();
+                    fileContent.append(Integer.toString(readNumber));
+                } catch (EOFException error) {
+                    endNotReached = false;
+                    dataIn.close();
+                }
+            }
+        } catch (FileNotFoundException error) {
+            System.err.println("File not found.");
+        } catch (IOException error) {
+            System.err.println("Error : IOException");
+        }
+        return fileContent.toString();
     }
 }

@@ -24,10 +24,12 @@ public class TestFichier {
     }
 
     public static void question5() {
-        // WIP
+        Fichier fichier = new Fichier("fileQ5");
+        fichier.aleatoire(10);
+        System.out.println("Filecontent : " + fichier);
     }
 
     public static void main(String[] args) {
-        question4(args);
+        question5();
     }
 }
