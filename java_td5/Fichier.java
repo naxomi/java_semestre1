@@ -45,11 +45,10 @@ public class Fichier {
     public String toString() {
 
         StringBuilder fileContent = new StringBuilder();
-        DataInputStream dataIn = null;
         try {
             Path currentDirectoryPath = FileSystems.getDefault().getPath("").toAbsolutePath();
             String filePath = currentDirectoryPath.toString() + "/java_td5/" + this.nomFichier;
-            dataIn = new DataInputStream(new FileInputStream(filePath));
+            DataInputStream dataIn = new DataInputStream(new FileInputStream(filePath));
 
             Boolean endNotReached = true;
             while (Boolean.TRUE.equals(endNotReached)) {
