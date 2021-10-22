@@ -4,6 +4,8 @@ import java.io.DataOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.Random;
 
 public class Fichier {
@@ -18,9 +20,11 @@ public class Fichier {
     public void aleatoire(int numberOfRand) {
 
         try {
-            DataOutputStream dataOut = new DataOutputStream(new FileOutputStream(this.nomFichier));
+            Path currentDirectoryPath = FileSystems.getDefault().getPath("").toAbsolutePath();
+            String filePath = currentDirectoryPath.toString() + "/java_td5/" + this.nomFichier;
+            DataOutputStream dataOut = new DataOutputStream(new FileOutputStream(filePath));
             for (int i = 0; i < numberOfRand; i++) {
-                System.out.println(i + 1);
+                System.out.println("i = " + (i + 1));
                 dataOut.writeInt(randGenerator.nextInt(100));
             }
             dataOut.close();
