@@ -49,9 +49,9 @@ public class TestFichier {
         }
     }
 
-    public static void question8() {
+    public static void question9() {
         Scanner sc = null;
-        PrintWriter prWriter = null;
+        PrintWriter fileWriter = null;
 
         Path currentDirectoryPath = FileSystems.getDefault().getPath("").toAbsolutePath();
         String inputFilePath = currentDirectoryPath.toString() + "/java_td5/studentMarks.txt";
@@ -59,9 +59,7 @@ public class TestFichier {
 
         try {
             sc = new Scanner(new File(inputFilePath));
-            prWriter = new PrintWriter(new FileWriter(outputFilePath));
-
-            System.out.println("-".repeat(10));
+            fileWriter = new PrintWriter(new FileWriter(outputFilePath));
 
             Double sumStudentsAverage = 0.0;
             Integer numOfStudentWithNotes = 0;
@@ -79,27 +77,28 @@ public class TestFichier {
                 Double average = 0.0;
 
                 if (listedLine.length == 2) {
-                    // Export data
-                    System.out.println(surname + " " + name + " : abs");
+                    fileWriter.write(surname + " " + name + " : abs\n");
                 } else {
                     for (String notes : Arrays.copyOfRange(listedLine, 2, listedLine.length)) {
                         numberOfNotes += 1;
                         sumNotes += Float.valueOf(notes);
                         average = Math.round(sumNotes / numberOfNotes * 100) / 100.0;
                     }
-                    // Export data
-                    System.out.println(surname + " " + name + " : " + average);
+                    fileWriter.write(surname + " " + name + " : " + average + "\n");
                     numOfStudentWithNotes += 1;
                     sumStudentsAverage += average;
                 }
 
             }
+            if (numOfStudentWithNotes != 0) {
+                Double classAverage = Math.round(sumStudentsAverage / numOfStudentWithNotes * 100) / 100.0;
+                fileWriter.write("\nClass average : " + classAverage + "\n");
+            } else {
+                fileWriter.write("\n Class average : None");
+            }
 
-            Double classAverage = Math.round(sumStudentsAverage / numOfStudentWithNotes * 100) / 100.0;
-            System.out.println("-".repeat(10));
-            System.out.println("Class average : " + classAverage);
             sc.close();
-            prWriter.close();
+            fileWriter.close();
 
         } catch (Exception e) {
             System.exit(-1);
@@ -107,6 +106,6 @@ public class TestFichier {
     }
 
     public static void main(String[] args) {
-        question8();
+        question9();
     }
 }
