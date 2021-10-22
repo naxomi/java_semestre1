@@ -38,8 +38,8 @@ public class TestFichier {
         Fichier fichier = new Fichier("fileQ7");
         fichier.aleatoire(10);
         try {
-            System.out.println("Minimum number : " + fichier.min());
             System.out.println("Filecontent : " + fichier);
+            System.out.println("Minimum number : " + fichier.min());
         } catch (IOException e) {
             System.out.println("Error : IOException. Problem while reading or writing file.");
         }
