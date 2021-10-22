@@ -4,7 +4,7 @@ import PaD.PlancheADessin;
 
 public class TestTd4 {
 
-    public void exerciceRelationAppartenance() {
+    public static void exerciceRelationAppartenance() {
         // Answer to question 1 :
         // Implicit super constructor Figure() is undefined. Must explicitly invoke
         // another constructor
