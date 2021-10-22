@@ -17,6 +17,8 @@ public class Fichier {
     private String nomFichier;
     private Random randGenerator = new Random();
 
+    private static final String FOLDER_TO_SAVE_IN = "/java_td5/";
+
     public Fichier(String inputNom) {
         this.nomFichier = inputNom;
     }
@@ -25,10 +27,9 @@ public class Fichier {
 
         try {
             Path currentDirectoryPath = FileSystems.getDefault().getPath("").toAbsolutePath();
-            String filePath = currentDirectoryPath.toString() + "/java_td5/" + this.nomFichier;
+            String filePath = currentDirectoryPath.toString() + FOLDER_TO_SAVE_IN + this.nomFichier;
             DataOutputStream dataOut = new DataOutputStream(new FileOutputStream(filePath));
             for (int i = 0; i < numberOfRand; i++) {
-                System.out.println("i = " + (i + 1));
                 dataOut.writeInt(randGenerator.nextInt(100));
             }
             dataOut.close();
@@ -44,18 +45,19 @@ public class Fichier {
     @Override
     public String toString() {
 
-        StringBuilder fileContent = new StringBuilder();
+        StringBuilder strBuilder = new StringBuilder();
         try {
             Path currentDirectoryPath = FileSystems.getDefault().getPath("").toAbsolutePath();
-            String filePath = currentDirectoryPath.toString() + "/java_td5/" + this.nomFichier;
+            String filePath = currentDirectoryPath.toString() + FOLDER_TO_SAVE_IN + this.nomFichier;
             DataInputStream dataIn = new DataInputStream(new FileInputStream(filePath));
 
             Boolean endNotReached = true;
             while (Boolean.TRUE.equals(endNotReached)) {
                 try {
                     Integer readNumber = dataIn.readInt();
-                    fileContent.append(Integer.toString(readNumber));
+                    strBuilder.append(Integer.toString(readNumber) + "_");
                 } catch (EOFException error) {
+                    strBuilder.deleteCharAt(strBuilder.length() - 1);
                     endNotReached = false;
                     dataIn.close();
                 }
@@ -65,6 +67,29 @@ public class Fichier {
         } catch (IOException error) {
             System.err.println("Error : IOException");
         }
-        return fileContent.toString();
+        return strBuilder.toString();
+    }
+
+    public Integer min() throws IOException {
+
+        Integer minNumber = 2147483647; // Largest int handled by Java
+
+        Path currentDirectoryPath = FileSystems.getDefault().getPath("").toAbsolutePath();
+        String filePath = currentDirectoryPath.toString() + FOLDER_TO_SAVE_IN + this.nomFichier;
+        DataInputStream dataIn = new DataInputStream(new FileInputStream(filePath));
+
+        Boolean endNotReached = true;
+        while (Boolean.TRUE.equals(endNotReached)) {
+            try {
+                Integer readNumber = dataIn.readInt();
+                if (readNumber < minNumber) {
+                    minNumber = readNumber;
+                }
+            } catch (EOFException error) {
+                endNotReached = false;
+                dataIn.close();
+            }
+        }
+        return minNumber;
     }
 }

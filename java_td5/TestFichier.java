@@ -1,5 +1,10 @@
 package java_td5;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.midi.SysexMessage;
+
 public class TestFichier {
 
     public static void question3() {
@@ -29,7 +34,18 @@ public class TestFichier {
         System.out.println("Filecontent : " + fichier);
     }
 
+    public static void question7() {
+        Fichier fichier = new Fichier("fileQ7");
+        fichier.aleatoire(10);
+        try {
+            System.out.println("Minimum number : " + fichier.min());
+            System.out.println("Filecontent : " + fichier);
+        } catch (IOException e) {
+            System.out.println("Error : IOException. Problem while reading or writing file.");
+        }
+    }
+
     public static void main(String[] args) {
-        question5_6();
+        question7();
     }
 }
