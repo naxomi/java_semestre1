@@ -36,4 +36,9 @@ public class Fichier {
             error.printStackTrace();
         }
     }
+
+    @Override
+    public String toString() {
+
+    }
 }

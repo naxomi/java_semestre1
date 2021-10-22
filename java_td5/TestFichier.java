@@ -13,13 +13,21 @@ public class TestFichier {
          */
     }
 
-    public static void question4() {
-        Fichier fichier = new Fichier("fileQ4");
-        fichier.aleatoire(5);
-        System.out.println(fichier);
+    public static void question4(String[] inputArgs) {
+        Fichier fichier = null;
+        if (inputArgs.length == 0) {
+            fichier = new Fichier("fileQ4");
+        } else {
+            fichier = new Fichier(inputArgs[0]);
+        }
+        fichier.aleatoire(100);
+    }
+
+    public static void question5() {
+        // WIP
     }
 
     public static void main(String[] args) {
-        question4();
+        question4(args);
     }
 }
