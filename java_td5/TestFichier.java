@@ -2,8 +2,12 @@ package java_td5;
 
 import java.io.File;
 import java.io.IOException;
-
-import javax.sound.midi.SysexMessage;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class TestFichier {
 
@@ -45,7 +49,64 @@ public class TestFichier {
         }
     }
 
+    public static void question8() {
+        Scanner sc = null;
+        PrintWriter prWriter = null;
+
+        Path currentDirectoryPath = FileSystems.getDefault().getPath("").toAbsolutePath();
+        String inputFilePath = currentDirectoryPath.toString() + "/java_td5/studentMarks.txt";
+        String outputFilePath = currentDirectoryPath.toString() + "/java_td5/studentAverage.txt";
+
+        try {
+            sc = new Scanner(new File(inputFilePath));
+            prWriter = new PrintWriter(new FileWriter(outputFilePath));
+
+            System.out.println("-".repeat(10));
+
+            Double sumStudentsAverage = 0.0;
+            Integer numOfStudentWithNotes = 0;
+
+            while (sc.hasNextLine()) {
+                // Gather data
+                String line = sc.nextLine();
+                String[] listedLine = line.split(" ");
+
+                String surname = listedLine[0];
+                String name = listedLine[1];
+
+                Integer numberOfNotes = 0;
+                Double sumNotes = 0.0;
+                Double average = 0.0;
+
+                if (listedLine.length == 2) {
+                    // Export data
+                    System.out.println(surname + " " + name + " : abs");
+                } else {
+                    for (String notes : Arrays.copyOfRange(listedLine, 2, listedLine.length)) {
+                        numberOfNotes += 1;
+                        sumNotes += Float.valueOf(notes);
+                        average = Math.round(sumNotes / numberOfNotes * 100) / 100.0;
+                    }
+                    // Export data
+                    System.out.println(surname + " " + name + " : " + average);
+                    numOfStudentWithNotes += 1;
+                    sumStudentsAverage += average;
+                }
+
+            }
+
+            Double classAverage = Math.round(sumStudentsAverage / numOfStudentWithNotes * 100) / 100.0;
+            System.out.println("-".repeat(10));
+            System.out.println("Class average : " + classAverage);
+            sc.close();
+            prWriter.close();
+
+        } catch (Exception e) {
+            System.exit(-1);
+        }
+    }
+
     public static void main(String[] args) {
-        question7();
+        question8();
     }
 }
