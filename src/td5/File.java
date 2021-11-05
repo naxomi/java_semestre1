@@ -41,14 +41,14 @@ public class File {
         StringBuilder strBuilder = new StringBuilder();
         try {
             Path currentDirectoryPath = FileSystems.getDefault().getPath("").toAbsolutePath();
-            String filePath = currentDirectoryPath.toString() + FOLDER_TO_SAVE_IN + this.fileName;
+            String filePath = currentDirectoryPath + FOLDER_TO_SAVE_IN + this.fileName;
             DataInputStream dataIn = new DataInputStream(new FileInputStream(filePath));
 
             boolean endNotReached = true;
             while (Boolean.TRUE.equals(endNotReached)) {
                 try {
                     int readNumber = dataIn.readInt();
-                    strBuilder.append(Integer.toString(readNumber)).append("_");
+                    strBuilder.append(readNumber).append("_");
                 } catch (EOFException error) {
                     strBuilder.deleteCharAt(strBuilder.length() - 1);
                     endNotReached = false;
@@ -68,7 +68,7 @@ public class File {
         int minNumber = 2147483647; // Largest int handled by Java
 
         Path currentDirectoryPath = FileSystems.getDefault().getPath("").toAbsolutePath();
-        String filePath = currentDirectoryPath.toString() + FOLDER_TO_SAVE_IN + this.fileName;
+        String filePath = currentDirectoryPath + FOLDER_TO_SAVE_IN + this.fileName;
         DataInputStream dataIn = new DataInputStream(new FileInputStream(filePath));
 
         boolean endNotReached = true;
