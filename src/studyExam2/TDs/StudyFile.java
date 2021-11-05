@@ -1,4 +1,4 @@
-package studyExam2;
+package studyExam2.TDs;
 
 import java.io.*;
 import java.nio.file.FileSystems;
@@ -22,7 +22,6 @@ public class StudyFile {
             os = new DataOutputStream(new FileOutputStream(filePath));
             for (int i = 0; i < n; i++) {
                 int randNumber = random.nextInt(100);
-                System.out.println("-------" + randNumber);
                 os.writeInt(randNumber);
             }
         } catch (FileNotFoundException error) {

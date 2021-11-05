@@ -1,6 +1,6 @@
-package studyExam2;
+package studyExam2.Exo3;
 
-public class TestExo3Exam {
+public class TestExo3Exam2021 {
     public static void main(String[] args) {
         Collection collection = new Collection();
         collection.add(new Peinture(1925, "Picasso"), 0);

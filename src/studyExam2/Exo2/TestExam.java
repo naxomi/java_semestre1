@@ -1,4 +1,4 @@
-package studyExam2;
+package studyExam2.Exo2;
 
 public class TestExam {
     public static void main(String[] args) {

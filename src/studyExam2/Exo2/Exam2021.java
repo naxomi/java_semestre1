@@ -1,4 +1,4 @@
-package studyExam2;
+package studyExam2.Exo2;
 
 import java.io.DataOutputStream;
 import java.io.FileNotFoundException;

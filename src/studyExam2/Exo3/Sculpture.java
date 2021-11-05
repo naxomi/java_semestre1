@@ -1,4 +1,4 @@
-package studyExam2;
+package studyExam2.Exo3;
 
 public class Sculpture extends Oeuvre {
     private final Matiere matiere;
@@ -14,6 +14,6 @@ public class Sculpture extends Oeuvre {
 
     @Override
     public String DisplayDetails() {
-        return this.getArtist() + " | " + this.getYear() + " | Likes: " + this.getLike();
+        return this.getArtist() + " | " + this.getYear() + " | Likes: " + this.getLike() + " | " + this.getMatiere();
     }
 }

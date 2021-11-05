@@ -1,4 +1,4 @@
-package studyExam2;
+package studyExam2.Exo3;
 
 public class Collection {
 

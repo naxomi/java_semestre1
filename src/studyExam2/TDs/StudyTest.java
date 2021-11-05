@@ -1,4 +1,4 @@
-package studyExam2;
+package studyExam2.TDs;
 
 import java.io.IOException;
 
