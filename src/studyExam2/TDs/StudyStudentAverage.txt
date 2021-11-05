@@ -1,0 +1,6 @@
+Messi Paul : 8.17
+Bardot Marie : abs
+Bella Jean : 13.16
+Dupont Isabelle : 17.0
+
+Class average : 12.78
